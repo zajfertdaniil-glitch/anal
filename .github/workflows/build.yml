@@ -8,10 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+
       - name: Build
-        run: |
-          cl /MT /O2 /Fe:wiper.exe main.cpp /link /MACHINE:X86 psapi.lib
         shell: cmd
+        run: cl /MT /O2 /Fe:wiper.exe main.cpp psapi.lib /link /MACHINE:X86
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
