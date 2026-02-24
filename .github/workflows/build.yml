@@ -15,7 +15,7 @@ jobs:
 
       - name: Build
         shell: cmd
-        run: cl /MT /O2 /Fe:wiper.exe main.cpp psapi.lib /link /MACHINE:X86
+        run: cl /MT /O2 /EHsc /Fe:wiper.exe main.cpp psapi.lib advapi32.lib /link /MACHINE:X86
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
