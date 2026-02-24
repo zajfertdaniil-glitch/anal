@@ -1,0 +1,20 @@
+name: Build EXE
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          cl /MT /O2 /Fe:wiper.exe main.cpp /link /MACHINE:X86 psapi.lib
+        shell: cmd
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: wiper
+          path: wiper.exe
